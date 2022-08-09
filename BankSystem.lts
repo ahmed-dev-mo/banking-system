@@ -1,0 +1,30 @@
+const TRANCE_MAX = 3
+range TRANS_AMOUNT = 2..TRANCE_MAX
+range BALANCE_DEFAULT = 6..6
+range CURRENT_BALANCE = 3..9
+
+
+STUDENT = (readBalance[balance:BALANCE_DEFAULT] -> WITHDRAW[balance]),
+	WITHDRAW[balance:BALANCE_DEFAULT] = (subtractSomeMoney[amount:TRANS_AMOUNT] -> CALCULATE_BALANCE[balance-amount]),
+	CALCULATE_BALANCE[balance:CURRENT_BALANCE] = (calculateBalance[balance] -> PURCHASE_SAMSUNG_PHONE[balance]),
+	PURCHASE_SAMSUNG_PHONE[balance:CURRENT_BALANCE] = (purchaseSamsungPhone -> updateBalance[balance] -> currentBalance[balance] -> STUDENT).
+
+STUDENT_GRANDMOTHER = (readBalance[balance:BALANCE_DEFAULT] -> DEPOSIT[balance]),
+	DEPOSIT[balance:BALANCE_DEFAULT] = (addMoney[amount:TRANS_AMOUNT] -> CALCULATE_BALANCE[balance+amount]),
+	CALCULATE_BALANCE[balance:CURRENT_BALANCE] = (calculateBalance[balance] -> SEND_E_CARD[balance]),
+	SEND_E_CARD[balance:CURRENT_BALANCE]  = (updateBalance[balance] -> sendECard -> currentBalance[balance] -> STUDENT_GRANDMOTHER).
+
+STUDENT_LOAN_COMPANY = (readBalance[balance:BALANCE_DEFAULT] -> DEPOSIT[balance]),
+	DEPOSIT[balance:BALANCE_DEFAULT] = (addMoney[amount:TRANS_AMOUNT] -> CALCULATE_BALANCE[balance+amount]),
+	CALCULATE_BALANCE[balance:CURRENT_BALANCE] = (calculateBalance[balance] -> updateBalance[balance] -> currentBalance[balance] -> STUDENT_LOAN_COMPANY) .
+
+UNIVERSITY = (readBalance[balance:BALANCE_DEFAULT] -> subtractSomeMoney[amount:TRANS_AMOUNT] -> CALCULATE_BALANCE[balance-amount]),
+	CALCULATE_BALANCE[balance:CURRENT_BALANCE] = (calculateBalance[balance] -> updateBalance[balance] -> currentBalance[balance] -> UNIVERSITY).
+
+BANK_ACCOUNT = (readBalance[defualtBalance:BALANCE_DEFAULT] -> calculateBalance[currentBal:CURRENT_BALANCE] -> updateBalance[currentBal] -> currentBalance[currentBal] -> BANK_ACCOUNT) .
+
+|| BANKING_SYSTEM = (student : STUDENT
+						|| studentGrandMother : STUDENT_GRANDMOTHER
+						|| studentsLoanCompany : STUDENT_LOAN_COMPANY
+						|| university : UNIVERSITY
+						|| {student, studentGrandMother, studentsLoanCompany, university} :: BANK_ACCOUNT) .

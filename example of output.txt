@@ -1,0 +1,46 @@
+run:
+STUDENT Transactions :
+UNIVERSITY Transactions : 
+LOAN_COMPANY Transactions :
+GRAND_MOTHER Transactions: 
++ GRAND_MOTHER: Transaction deposit successful [ Customer: GrandMother, Amount: 1500]
+* You do not have enough to withdrawal £35000 for University
+- UNIVERSITY: Transaction withdrawal successful  [ Customer: University, Amount: 35000]
++ LOAN_COMPANY: Transaction deposit successful [ Customer: Loan Company, Amount: 45000]
++ STUDENT: Transaction deposit successful [ Customer: Student, Amount: 1000000]
++ LOAN_COMPANY: Transaction deposit successful [ Customer: Loan Company, Amount: 45000]
++ LOAN_COMPANY: Transaction deposit successful [ Customer: Loan Company, Amount: 45000]
+LOAN_COMPANY Transactions Complete
+- STUDENT: Transaction withdrawal successful [ Customer: Student, Amount: 800]
+- UNIVERSITY: Transaction withdrawal successful  [ Customer: University, Amount: 35000]
++ GRAND_MOTHER: Transaction deposit successful[ Customer: GrandMother, Amount: 1500]
+GRAND_MOTHER Transactions Complete
+- STUDENT: Transaction withdrawal successful [ Customer: Student, Amount: 700]
+- UNIVERSITY: Transaction withdrawal successful  [ Customer: University, Amount: 35000]
+- STUDENT: Transaction withdrawal successful [ Customer: Student, Amount: 2500]
++ STUDENT: Transaction deposit successful [ Customer: Student, Amount: 5000]
+ UNIVERSITY Transactions Complete
+- STUDENT: Transaction withdrawal successful [ Customer: Student, Amount: 350]
+STUDENT Transactions Transactions Complete
+
+Statement for Student's Account: 439865
+================================================
+Customer                 Amount        Balance
+================================================
+GrandMother                1500        1500
+Loan Company              45000       46500
+University                35000       11500
+Student                 1000000     1011500
+Loan Company              45000     1056500
+Loan Company              45000     1101500
+Student                     800     1100700
+University                35000     1065700
+GrandMother                1500     1067200
+Student                     700     1066500
+University                35000     1031500
+Student                    2500     1029000
+Student                    5000     1034000
+Student                     350     1033650
+================================================
+
+BUILD SUCCESSFUL (total time: 0 seconds)
